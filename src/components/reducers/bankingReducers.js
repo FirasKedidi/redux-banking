@@ -1,23 +1,28 @@
 
-const initialState = 0
+const initialState = {
+    balance:0,
+    isSavingAccount: false
+}
 export const bankingReducer = (state = initialState,action) => {
     switch(action.type) {
         case 'DEPOSIT':
-            return (state + action.amount)
+            return {...state,balance: state.balance + action.amount}
             break
             //logic for deposit
         case 'WITHDRAW':
-            return state - action.amount
+            return {...state,balance: state.balance - action.amount}
             //logic for withdraw
             break
         case 'COLLECT_INTEREST':
-            return state*1.03
+            return {...state,balance: state.balance*1.03}
             //logic
             break
         case 'DELETE_ACCOUNT':
-            return 0
+            return {...state,balance:0}
             //logic
             break
+        case 'TOGGLE_ACCOUNT':
+            return {...state,isSavingAccount:!state.isSavingAccount}
         default:
             return state
     }
@@ -25,20 +30,3 @@ export const bankingReducer = (state = initialState,action) => {
 
 }
 
-const deposit = {
-    type:'DEPOSIT',
-    amount: 20
-}
-
-const withdraw = {
-    type:'WITHDRAW',
-    amount: 20
-}
-
-const collectInterest = {
-    type: 'COLLECT_INTEREST'
-}
-
-const deleteAccount = {
-    type: 'DELETE_ACCOUNT'
-}

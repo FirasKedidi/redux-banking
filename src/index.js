@@ -1,10 +1,12 @@
 import React from 'react';
 import  ReactDOM  from 'react-dom';
 import App from './App';
-import { legacy_createStore as createStore} from 'redux'
+import { combineReducers, legacy_createStore as createStore} from 'redux'
 import { bankingReducer } from './components/reducers/bankingReducers';
 import { Provider } from 'react-redux';
-const store = createStore(bankingReducer)
+import { authReducer } from './components/reducers/authReducers';
+import { rootReducer } from './components/reducers/combineReducer';
+const store = createStore(rootReducer)
 
 ReactDOM.render(
 <Provider store={store}>
